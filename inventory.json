@@ -12,20 +12,30 @@
   {
     "year": 2021,
     "make": "Honda",
-    "model": "Civic LX",
-    "price": 18500,
-    "mileage": 25000,
-    "stock": "21C05001",
+    "model": "CR-V EX",
+    "price": 24998,
+    "mileage": 59996,
+    "stock": "22E08007",
     "image": "",
     "features": []
   },
   {
+    "year": 2022,
+    "make": "Honda",
+    "model": "Pilot SE",
+    "price": 26876,
+    "mileage": 119995,
+    "stock": "22E08006",
+    "image": "",
+    "features": []
+  }
+]
     "year": 2023,
-    "make": "Toyota",
-    "model": "Camry SE",
-    "price": 27500,
-    "mileage": 10000,
-    "stock": "23T07009",
+    "make": "Ford",
+    "model": "F-150 XLT",
+    "price": 30998,
+    "mileage": 46932,
+    "stock": "22E02404",
     "image": "",
     "features": []
   }
