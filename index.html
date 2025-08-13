@@ -1,67 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Victory Inventory</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Victory Inventory</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Victory Vehicle Inventory</h1>
-        <p>Browse vehicles by price range</p>
-    </header>
 
-    <main>
-        <section id="under-20k">
-            <h2>Under $20,000</h2>
-            <ul id="list-under-20k"></ul>
-        </section>
+  <h1>Victory Vehicle Inventory</h1>
 
-        <section id="20k-30k">
-            <h2>$20,000 – $30,000</h2>
-            <ul id="list-20k-30k"></ul>
-        </section>
+  <!-- Search Box -->
+  <input type="text" id="search" placeholder="Search make, model, or stock #">
 
-        <section id="over-30k">
-            <h2>Over $30,000</h2>
-            <ul id="list-over-30k"></ul>
-        </section>
-    </main>
+  <!-- Filter Buttons -->
+  <div id="filters">
+    <button data-category="all" class="active">All</button>
+    <button data-category="Under $10,000">Under $10,000</button>
+    <button data-category="$10,000 - $20,000">$10,000 - $20,000</button>
+    <button data-category="$20,000 - $30,000">$20,000 - $30,000</button>
+    <button data-category="$30,000 and above">$30,000 and above</button>
+  </div>
 
-    <footer>
-        <p>© 2025 Victory Inventory</p>
-    </footer>
+  <!-- Inventory Grid -->
+  <div id="inventory"></div>
 
-    <script src="script.js"></script>
-</body><h1>Victory Inventory</h1>
-    <div id="search-container">
-  <input type="text" id="search" placeholder="Search by make, model, or stock number...">
-        <input type="text" id="search" placeholder="Search make, model, or stock #">
-<div id="filters">
-  <button data-category="all">All</button>
-  <button data-category="Under $10,000">Under $10,000</button>
-  <button data-category="$10,000 - $20,000">$10,000 - $20,000</button>
-  <button data-category="$20,000 - $30,000">$20,000 - $30,000</button>
-  <button data-category="$30,000 and above">$30,000 and above</button>
-</div>
-<input type="text" id="search" placeholder="Search make, model, or stock #">
-<div id="filters">
-  <button data-category="all">All</button>
-  <button data-category="Under $10,000">Under $10,000</button>
-  <button data-category="$10,000 - $20,000">$10,000 - $20,000</button>
-  <button data-category="$20,000 - $30,000">$20,000 - $30,000</button>
-  <button data-category="$30,000 and above">$30,000 and above</button>
-</div>
-
-</div>
-    <div id="filters">
-  <button data-category="all">All</button>
-  <button data-category="Under $10,000">Under $10,000</button>
-  <button data-category="$10,000 - $20,000">$10,000 - $20,000</button>
-  <button data-category="$20,000 - $30,000">$20,000 - $30,000</button>
-  <button data-category="$30,000 and above">$30,000 and above</button>
-</div>
-
-<div id="inventory"></div>
+  <script src="script.js"></script>
+</body>
 </html>
