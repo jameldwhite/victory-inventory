@@ -129,6 +129,11 @@ filtersContainer.addEventListener('click', e => {
   }
 }
     // Filter button clicks
+    // Handle search input
+document.getElementById('search').addEventListener('input', e => {
+  searchTerm = e.target.value;
+  renderInventory();
+});
     filtersContainer.addEventListener('click', e => {
       if (e.target.tagName === 'BUTTON') {
         const category = e.target.getAttribute('data-category');
