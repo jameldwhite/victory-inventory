@@ -1,29 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Victory Inventory</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <header>
+    <h1>Victory Vehicle Inventory</h1>
+    <div class="controls">
+      <input type="text" id="search" placeholder="Search by make, model, or year...">
+      <select id="sort">
+        <option value="">Sort by</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        <option value="year-desc">Year: New to Old</option>
+        <option value="year-asc">Year: Old to New</option>
+      </select>
+      <span id="count"></span>
+    </div>
+  </header>
 
-  <h1>Victory Vehicle Inventory</h1>
-
-  <!-- Search Box -->
-  <input type="text" id="search" placeholder="Search make, model, or stock #">
-
-  <!-- Filter Buttons -->
-  <div id="filters">
-    <button data-category="all" class="active">All</button>
-    <button data-category="Under $10,000">Under $10,000</button>
-    <button data-category="$10,000 - $20,000">$10,000 - $20,000</button>
-    <button data-category="$20,000 - $30,000">$20,000 - $30,000</button>
-    <button data-category="$30,000 and above">$30,000 and above</button>
-  </div>
-
-  <!-- Inventory Grid -->
-  <div id="inventory"></div>
+  <main id="inventory"></main>
 
   <script src="script.js"></script>
 </body>
