@@ -1,97 +1,61 @@
-let activeCategory = "all";
-let searchTerm = "";
-let data = [];
+let inventory = [];
+let filteredInventory = [];
 
-const inventoryContainer = document.getElementById('inventory');
-const filtersContainer = document.getElementById('filters');
-
-const categories = {
-  "Under $10,000": v => v.price < 10000,
-  "$10,000 - $20,000": v => v.price >= 10000 && v.price < 20000,
-  "$20,000 - $30,000": v => v.price >= 20000 && v.price < 30000,
-  "$30,000 and above": v => v.price >= 30000
-};
-
-// Load inventory data
-fetch('inventory.json')
-  .then(response => response.json())
-  .then(json => {
-    data = json;
-    renderInventory();
-  });
-
-document.addEventListener("DOMContentLoaded", () => {
-  // Filter buttons
-  filtersContainer.addEventListener('click', e => {
-    if (e.target.tagName === 'BUTTON') {
-      activeCategory = e.target.getAttribute('data-category');
-      highlightActiveButton();
-      renderInventory();
-    }
-  });
-
-  // Search
-  document.getElementById('search').addEventListener('input', e => {
-    searchTerm = e.target.value;
-    renderInventory();
-  });
-});
+async function loadInventory() {
+  const res = await fetch("inventory.json");
+  inventory = await res.json();
+  filteredInventory = inventory;
+  renderInventory();
+}
 
 function renderInventory() {
-  inventoryContainer.innerHTML = "";
+  const container = document.getElementById("inventory");
+  container.innerHTML = "";
 
-  for (let category in categories) {
-    if (activeCategory !== "all" && category !== activeCategory) continue;
+  filteredInventory.forEach(vehicle => {
+    const card = document.createElement("div");
+    card.className = "vehicle-card";
 
-    let categoryVehicles = data.filter(categories[category]);
+    const img = vehicle.image && vehicle.image.trim() !== "" 
+      ? vehicle.image 
+      : "https://via.placeholder.com/400x300?text=No+Photo+Available";
 
-    if (searchTerm.trim() !== "") {
-      categoryVehicles = categoryVehicles.filter(vehicle => {
-        const text = `${vehicle.year} ${vehicle.make} ${vehicle.model} ${vehicle.stock}`.toLowerCase();
-        return text.includes(searchTerm.toLowerCase());
-      });
-    }
+    const badge = vehicle.price < 10000 ? `<span class="badge">Hot Deal</span>` : "";
 
-    categoryVehicles.sort((a, b) => a.price - b.price);
+    card.innerHTML = `
+      <div style="position:relative;">
+        ${badge}
+        <img src="${img}" alt="${vehicle.year} ${vehicle.make} ${vehicle.model}">
+      </div>
+      <h3>${vehicle.year} ${vehicle.make} ${vehicle.model}</h3>
+      <p><strong>Price:</strong> $${vehicle.price.toLocaleString()}</p>
+      <p><strong>Mileage:</strong> ${vehicle.mileage.toLocaleString()} miles</p>
+      <p><strong>Stock #:</strong> ${vehicle.stock}</p>
+    `;
 
-    if (categoryVehicles.length > 0) {
-      const categorySection = document.createElement('section');
-      categorySection.innerHTML = `<h2>${category}</h2>`;
-
-      categoryVehicles.forEach(vehicle => {
-        const card = document.createElement('div');
-        card.className = 'vehicle-card hide';
-
-        let imageHTML = '';
-        if (vehicle.image && vehicle.image.trim() !== '') {
-          imageHTML = `<img src="${vehicle.image}" alt="${vehicle.year} ${vehicle.make} ${vehicle.model}">`;
-        }
-
-        card.innerHTML = `
-          ${imageHTML}
-          <h3>${vehicle.year} ${vehicle.make} ${vehicle.model}</h3>
-          <p><strong>Price:</strong> $${vehicle.price.toLocaleString()}</p>
-          <p><strong>Mileage:</strong> ${vehicle.mileage.toLocaleString()} miles</p>
-          <p><strong>Stock #:</strong> ${vehicle.stock}</p>
-        `;
-        categorySection.appendChild(card);
-      });
-
-      inventoryContainer.appendChild(categorySection);
-    }
-  }
-
-  requestAnimationFrame(() => {
-    const newCards = inventoryContainer.querySelectorAll('.vehicle-card');
-    newCards.forEach(card => card.classList.remove('hide'));
+    container.appendChild(card);
   });
+
+  document.getElementById("count").textContent = `${filteredInventory.length} vehicle(s) found`;
 }
 
-function highlightActiveButton() {
-  const buttons = filtersContainer.querySelectorAll('button');
-  buttons.forEach(btn => btn.classList.remove('active'));
-  const activeBtn = filtersContainer.querySelector(`button[data-category="${activeCategory}"]`);
-  if (activeBtn) {
-    activeBtn.classList.add('active');
-  }
-}
+document.getElementById("search").addEventListener("input", e => {
+  const term = e.target.value.toLowerCase();
+  filteredInventory = inventory.filter(v => 
+    v.make.toLowerCase().includes(term) ||
+    v.model.toLowerCase().includes(term) ||
+    v.year.toString().includes(term)
+  );
+  renderInventory();
+});
+
+document.getElementById("sort").addEventListener("change", e => {
+  const val = e.target.value;
+  if (val === "price-asc") filteredInventory.sort((a,b) => a.price - b.price);
+  if (val === "price-desc") filteredInventory.sort((a,b) => b.price - a.price);
+  if (val === "year-asc") filteredInventory.sort((a,b) => a.year - b.year);
+  if (val === "year-desc") filteredInventory.sort((a,b) => b.year - a.year);
+  renderInventory();
+});
+
+loadInventory();
