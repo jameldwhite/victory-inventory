@@ -40,3 +40,16 @@
   border-radius: 4px;
   border: 1px solid #ccc;
 }
+.vehicle-card {
+  opacity: 1;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.vehicle-card.hide {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+#inventory section {
+  transition: opacity 0.3s ease;
+}
