@@ -38,5 +38,24 @@
     "stock": "22E02404",
     "image": "",
     "features": []
-  }
+  },
+  {
+    "year": 2022,
+    "make": "Ram",
+    "model": "3500 Tradesman",
+    "price": 41997,
+    "mileage": 98547,
+    "stock": "22E04600",
+    "image": "",
+    "features": []
+    },
+  {
+    "year": 2022,
+    "make": "Toyota",
+    "model": "4Runner SR5 Premium",
+    "price": 36999,
+    "mileage": 56572,
+    "stock": "22E04501",
+    "image": "",
+    "features": []
 ]
