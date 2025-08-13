@@ -8,5 +8,25 @@
     "stock": "22E08005",
     "image": "",
     "features": []
+  },
+  {
+    "year": 2021,
+    "make": "Honda",
+    "model": "Civic LX",
+    "price": 18500,
+    "mileage": 25000,
+    "stock": "21C05001",
+    "image": "",
+    "features": []
+  },
+  {
+    "year": 2023,
+    "make": "Toyota",
+    "model": "Camry SE",
+    "price": 27500,
+    "mileage": 10000,
+    "stock": "23T07009",
+    "image": "",
+    "features": []
   }
 ]
