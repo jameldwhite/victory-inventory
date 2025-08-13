@@ -96,3 +96,20 @@ h1 {
   opacity: 1;
   transform: scale(1);
 }
+.vehicle-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px;
+  margin: 12px;
+  max-width: 320px;
+  display: inline-block;
+  vertical-align: top;
+  background: white;
+}
+
+.vehicle-image {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
