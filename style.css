@@ -1,3 +1,6 @@
+section {
+  margin-bottom: 30px;
+}
 .vehicle-card {
   border: 1px solid #ccc;
   padding: 16px;
@@ -5,6 +8,6 @@
   border-radius: 8px;
   background-color: #f9f9f9;
 }
-.vehicle-card h2 {
+.vehicle-card h3 {
   margin-top: 0;
 }
