@@ -16,3 +16,18 @@
   margin-bottom: 12px;
   border-radius: 6px;
 }
+#filters {
+  margin-bottom: 20px;
+}
+#filters button {
+  margin-right: 8px;
+  padding: 8px 14px;
+  border: none;
+  background-color: #007BFF;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+#filters button:hover {
+  background-color: #0056b3;
+}
