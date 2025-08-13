@@ -1,8 +1,17 @@
 fetch('inventory.json')
+  let activeCategory = "all";
+let searchTerm = "";
   .then(response => response.json())
   .then(data => {
     const inventoryContainer = document.getElementById('inventory');
     const filtersContainer = document.getElementById('filters');
+// Handle button clicks
+filtersContainer.addEventListener('click', e => {
+  if (e.target.tagName === 'BUTTON') {
+    activeCategory = e.target.getAttribute('data-category');
+    renderInventory();
+  }
+});
 
     // Define price categories
     const categories = {
