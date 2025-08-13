@@ -49,8 +49,52 @@ fetch('inventory.json')
     }
 
     // Initial load
-    renderInventory();
+    function renderInventory() {
+  inventoryContainer.innerHTML = "";
 
+  for (let category in categories) {
+    if (activeCategory !== "all" && category !== activeCategory) continue;
+
+    let categoryVehicles = data.filter(categories[category]);
+
+    // Apply search filter
+    if (searchTerm.trim() !== "") {
+      categoryVehicles = categoryVehicles.filter(vehicle => {
+        const text = `${vehicle.year} ${vehicle.make} ${vehicle.model} ${vehicle.stock}`.toLowerCase();
+        return text.includes(searchTerm.toLowerCase());
+      });
+    }
+
+    // Sort by price (low to high)
+    categoryVehicles.sort((a, b) => a.price - b.price);
+
+    if (categoryVehicles.length > 0) {
+      const categorySection = document.createElement('section');
+      categorySection.innerHTML = `<h2>${category}</h2>`;
+
+      categoryVehicles.forEach(vehicle => {
+        const card = document.createElement('div');
+        card.className = 'vehicle-card';
+
+        let imageHTML = '';
+        if (vehicle.image && vehicle.image.trim() !== '') {
+          imageHTML = `<img src="${vehicle.image}" alt="${vehicle.year} ${vehicle.make} ${vehicle.model}">`;
+        }
+
+        card.innerHTML = `
+          ${imageHTML}
+          <h3>${vehicle.year} ${vehicle.make} ${vehicle.model}</h3>
+          <p><strong>Price:</strong> $${vehicle.price.toLocaleString()}</p>
+          <p><strong>Mileage:</strong> ${vehicle.mileage.toLocaleString()} miles</p>
+          <p><strong>Stock #:</strong> ${vehicle.stock}</p>
+        `;
+        categorySection.appendChild(card);
+      });
+
+      inventoryContainer.appendChild(categorySection);
+    }
+  }
+}
     // Filter button clicks
     filtersContainer.addEventListener('click', e => {
       if (e.target.tagName === 'BUTTON') {
